@@ -36,7 +36,7 @@ class interface:
             print("No se pudo medir la distancia.")
 
         # Esperar 8 segundos
-        time.sleep(8)
+        
 
         # Preguntar si desea continuar
         respuesta = input("¿Desea continuar? (s/n): ")
