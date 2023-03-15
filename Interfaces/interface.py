@@ -27,18 +27,19 @@ class interface:
        
           
     def leersesnorUltrasonico(self):
+     tiempo_anterior = time.time()
+
      while True:
         distancia = sensor.medir_distancia()
-        # Imprimir resultados
-        if distancia:
+        tiempo_actual = time.time()
+
+        # Imprimir resultados si han pasado 8 segundos desde el último mensaje
+        if distancia and tiempo_actual - tiempo_anterior >= 8:
             print(f"Distancia: {distancia} cm")
-        else:
-            print("No se pudo medir la distancia.")
 
-        # Esperar 8 segundos
-        
+            # Preguntar si desea continuar
+            respuesta = input("¿Desea continuar? (s/n): ")
+            if respuesta.lower() == "n":
+                break
 
-        # Preguntar si desea continuar
-        respuesta = input("¿Desea continuar? (s/n): ")
-        if respuesta.lower() == "n":
-            break
+            tiempo_anterior = tiempo_actual
