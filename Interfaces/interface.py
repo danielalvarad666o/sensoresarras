@@ -1,6 +1,8 @@
 
-from Clases import claseLed
+from Clases import claseLed,claseUltrasonico
+import time
 led=claseLed.Led(21)
+sensor = claseUltrasonico.SensorUltrasónico(trigger_pin=18, echo_pin=24)
 
 class interface:
     
@@ -20,3 +22,23 @@ class interface:
             print("Opcion no valida ")
       except:
           print("Opcion no valida")
+       
+       
+       
+          
+    def leersesnorUltrasonico(self):
+     while True:
+        distancia = sensor.medir_distancia()
+        # Imprimir resultados
+        if distancia:
+            print(f"Distancia: {distancia} cm")
+        else:
+            print("No se pudo medir la distancia.")
+
+        # Esperar 8 segundos
+        time.sleep(8)
+
+        # Preguntar si desea continuar
+        respuesta = input("¿Desea continuar? (s/n): ")
+        if respuesta.lower() == "n":
+            break

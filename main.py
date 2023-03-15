@@ -11,7 +11,11 @@ while opcion!=6:
    opcion=elmenu.Optiones()
    
    if opcion==1:
+    lainterface.leersesnorUltrasonico()
+   elif opcion==2:
     lainterface.led()
+   else:
+      print("Opcion no valida ")
     
    
     
