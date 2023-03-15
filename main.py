@@ -3,10 +3,10 @@ from Clases import claseUltrasonico,claseTemperatura
 
 
 while True:
- sensor_temperatura = claseTemperatura.SensorTemperatura(sensor_id='28-000000000000')
+ sensor_temperatura = claseTemperatura.SensorTemperaturaHumedad(4)
  sensor = claseUltrasonico.SensorUltrasónico(trigger_pin=18, echo_pin=24)
  distancia = sensor.medir_distancia()
- temperatura = sensor_temperatura.leer_temperatura()
+ temperatura = sensor_temperatura.medir_temperatura_humedad()
 
 # Imprimir resultados
  if distancia:

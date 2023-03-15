@@ -1,28 +1,17 @@
-import os
-import glob
-import time
+import Adafruit_DHT
 
-class SensorTemperatura:
-    def __init__(self, sensor_id):
-        self.sensor_id = sensor_id
-        os.system('modprobe w1-gpio')
-        os.system('modprobe w1-therm')
-        self.device_file = '/sys/bus/w1/devices/{}/w1_slave'.format(sensor_id)
+class SensorTemperaturaHumedad:
+    def __init__(self, pin):
+        self.pin = pin
+        
+    def medir_temperatura_humedad(self):
+        # Especificamos que usaremos el sensor DHT11 y el pin que utilizaremos
+        sensor = Adafruit_DHT.DHT11
+        # Intentamos leer la temperatura y humedad
+        humedad, temperatura = Adafruit_DHT.read_retry(sensor, self.pin)
+        # Si la lectura falla, regresamos valores nulos
+        if humedad is None or temperatura is None:
+            return None, None
+        # Regresamos los valores leídos
+        return temperatura, humedad
 
-    def leer_temperatura(self):
-        try:
-            f = open(self.device_file, 'r')
-            lineas = f.readlines()
-            f.close()
-            while lineas[0].strip()[-3:] != 'YES':
-                time.sleep(0.2)
-                f = open(self.device_file, 'r')
-                lineas = f.readlines()
-                f.close()
-            igual_pos = lineas[1].find('t=')
-            if igual_pos != -1:
-                temperatura_str = lineas[1][igual_pos+2:]
-                temperatura = float(temperatura_str) / 1000.0
-                return temperatura
-        except:
-            return None
