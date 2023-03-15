@@ -1,20 +1,20 @@
 
-from Clases import claseUltrasonico,claseTemperatura,claseLed
+from Clases import claseLed
 led=claseLed.Led(21)
 
 class interface:
     
     
-    def led():
+    def led(self):
       try:
         print("Opciones del led")
         print("--"*100)
         print("1)Prender led")
         print("2)Apagar led")
-        opcion=int(input("Escoje una opcio: "))
-        if opcion==1:
+        op=int(input("Escoje una opcio: "))
+        if op==1:
          led.encender()
-        elif opcion==2:
+        elif op==2:
             led.apagar()
         else:
             print("Opcion no valida ")

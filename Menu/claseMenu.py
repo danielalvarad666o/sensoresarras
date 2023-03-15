@@ -1,6 +1,6 @@
 class Menus: 
     
-    def Optiones():
+    def Optiones(self):
      try:
         print("1)Agregar sensores")
         print("2)Led opciones")
