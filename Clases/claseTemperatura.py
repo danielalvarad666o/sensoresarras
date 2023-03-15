@@ -1,17 +1,16 @@
-import Adafruit_DHT
+import adafruit_dht
 
 class SensorTemperaturaHumedad:
     def __init__(self, pin):
         self.pin = pin
-        
+        self.dht_device = adafruit_dht.DHT11(self.pin)
+
     def medir_temperatura_humedad(self):
-        # Especificamos que usaremos el sensor DHT11 y el pin que utilizaremos
-        sensor = Adafruit_DHT.DHT11
-        # Intentamos leer la temperatura y humedad
-        humedad, temperatura = Adafruit_DHT.read_retry(sensor, self.pin)
-        # Si la lectura falla, regresamos valores nulos
-        if humedad is None or temperatura is None:
+        try:
+            temperatura = self.dht_device.temperature
+            humedad = self.dht_device.humidity
+            return temperatura, humedad
+        except RuntimeError as error:
+            print(f"Error al leer el sensor DHT11: {error}")
             return None, None
-        # Regresamos los valores leídos
-        return temperatura, humedad
 
