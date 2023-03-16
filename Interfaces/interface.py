@@ -46,14 +46,17 @@ class interface:
             tiempo_anterior = tiempo_actual
      
     def leersensorTemperatura(self):
-        tiempo_anterior = time.time()
-        while True:
-            temperatura=sensorT.medir_temperatura_humedad()
-            tiempo_actual=time.time()
-            # Imprimir resultados si han pasado 8 segundos desde el último mensaje
-            if temperatura and tiempo_actual - tiempo_anterior >= 15:
-             print(temperatura)
-             
-            respuesta = input("¿Desea continuar? (s/n): ")
-            if respuesta.lower() == "n":
-                break
+        
+        i = 0
+        while i < 8:
+          temperatura = sensorT.medir_temperatura_humedad()
+    # Imprimir resultados si han pasado 15 segundos desde el último mensaje
+          print(temperatura)
+          i += 1
+    
+          if i == 8:
+             respuesta = input("¿Desea continuar? (s/n): ")
+             if respuesta.lower() == "n":
+               break
+             else:
+              i = 0 # Reiniciar i si el usuario desea continuar
