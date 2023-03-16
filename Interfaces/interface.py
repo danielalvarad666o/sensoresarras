@@ -3,7 +3,7 @@ from Clases import claseLed,claseUltrasonico,claseTemperatura
 import time
 led=claseLed.Led(21)
 sensorU = claseUltrasonico.SensorUltrasónico(trigger_pin=18, echo_pin=24)
-sensorT= claseTemperatura.SensorTemperaturaHumedad(4)
+sensorT= claseTemperatura.SensorTemperaturaHumedad(5)
 
 class interface:
     

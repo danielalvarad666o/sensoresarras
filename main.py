@@ -16,10 +16,11 @@ while opcion!=6:
     lainterface.led()
     
    elif opcion==3:
-      lainterface.leersesnorUltrasonico()
-   elif opcion==4:
       lainterface.leersensorTemperatura()
       
+   elif opcion==4:
+      
+      lainterface.leersesnorUltrasonico()
    else:
       print("Opcion no valida ")
     
