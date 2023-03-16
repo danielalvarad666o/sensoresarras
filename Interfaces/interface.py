@@ -28,22 +28,22 @@ class interface:
        
           
     def leersesnorUltrasonico(self):
-     tiempo_anterior = time.time()
-
-     while True:
-        distancia = sensorU.medir_distancia()
-        tiempo_actual = time.time()
-
-        # Imprimir resultados si han pasado 8 segundos desde el último mensaje
-        if distancia and tiempo_actual - tiempo_anterior >= 15:
-            print(f"Distancia: {distancia} cm")
-
-            # Preguntar si desea continuar
-            respuesta = input("¿Desea continuar? (s/n): ")
-            if respuesta.lower() == "n":
+     
+        i = 0
+        while i < 8:
+         distancia = sensorU.medir_distancia()
+         print(f"Distancia: {distancia} cm")
+         i += 1
+    
+         if i == 8:
+          respuesta = input("¿Desea continuar? (s/n): ")
+          if respuesta.lower() == "n":
+            
                 break
+          else :
+              i=0
 
-            tiempo_anterior = tiempo_actual
+            
      
     def leersensorTemperatura(self):
         
