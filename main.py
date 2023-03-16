@@ -17,6 +17,8 @@ while opcion!=6:
     
    elif opcion==3:
       lainterface.leersesnorUltrasonico()
+   elif opcion==4:
+      lainterface.leersensorTemperatura()
       
    else:
       print("Opcion no valida ")
