@@ -1,8 +1,9 @@
 
-from Clases import claseLed,claseUltrasonico
+from Clases import claseLed,claseUltrasonico,claseTemperatura
 import time
 led=claseLed.Led(21)
-sensor = claseUltrasonico.SensorUltrasónico(trigger_pin=18, echo_pin=24)
+sensorU = claseUltrasonico.SensorUltrasónico(trigger_pin=18, echo_pin=24)
+sensorT= claseTemperatura.SensorTemperaturaHumedad(4)
 
 class interface:
     
@@ -30,11 +31,11 @@ class interface:
      tiempo_anterior = time.time()
 
      while True:
-        distancia = sensor.medir_distancia()
+        distancia = sensorU.medir_distancia()
         tiempo_actual = time.time()
 
         # Imprimir resultados si han pasado 8 segundos desde el último mensaje
-        if distancia and tiempo_actual - tiempo_anterior >= 8:
+        if distancia and tiempo_actual - tiempo_anterior >= 15:
             print(f"Distancia: {distancia} cm")
 
             # Preguntar si desea continuar
@@ -43,3 +44,16 @@ class interface:
                 break
 
             tiempo_anterior = tiempo_actual
+     
+    def leersensorTemperatura(self):
+        tiempo_anterior = time.time()
+        while True:
+            temperatura=sensorT.medir_temperatura_humedad()
+            tiempo_actual=time.time()
+            # Imprimir resultados si han pasado 8 segundos desde el último mensaje
+            if temperatura and tiempo_actual - tiempo_anterior >= 15:
+             print(temperatura)
+             
+            respuesta = input("¿Desea continuar? (s/n): ")
+            if respuesta.lower() == "n":
+                break
