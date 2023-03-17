@@ -1,12 +1,14 @@
 import RPi.GPIO as GPIO
 import time
+from ClaseLista import lista
 
-class Led:
+class Led(lista.Lista):
     def __init__(self, pin):
         self.pin = pin
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.pin, GPIO.OUT)
         GPIO.output(self.pin, GPIO.LOW)
+        super().__init__()
 
     def encender(self):
         GPIO.output(self.pin, GPIO.HIGH)

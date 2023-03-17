@@ -1,13 +1,14 @@
 import RPi.GPIO as GPIO
 import dht11
 import time
-
-class SensorTemperaturaHumedad:
+from ClaseLista import lista
+class SensorTemperaturaHumedad(lista.Lista):
     def __init__(self, pin):
         self.pin = pin
         self.instance = dht11.DHT11(pin=self.pin)
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.pin, GPIO.IN)
+        super().__init__()
 
     def medir_temperatura_humedad(self):
         time.sleep(2)  # Esperar 2 segundos antes de leer los valores
