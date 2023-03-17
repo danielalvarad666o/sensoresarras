@@ -1,5 +1,6 @@
 
 import datetime
+import json
 import RPi.GPIO as GPIO
 import time
 from ClaseLista import lista
@@ -13,8 +14,9 @@ class SensorUltrasónico(lista.Lista):
         GPIO.setup(self.echo_pin, GPIO.IN)
         super().__init__()
         
+        
 
-    def medir_distancia(self,lista):
+    def medir_distancia(self,lista,listasensores):
         GPIO.output(self.trigger_pin, True)
         time.sleep(0.00001)
         GPIO.output(self.trigger_pin, False)
@@ -27,6 +29,7 @@ class SensorUltrasónico(lista.Lista):
         tiempo_transcurrido = stop_time - start_time
         distancia = (tiempo_transcurrido * 34300) / 2
         self.distanciaInfo= {"Clave":lista[1],"Tipo":"Distancia","Valor":distancia,"fecha": datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-        super().crearjson(self.distanciaInfo,"sensores")
+        listasensores.append(self.distanciaInfo)
+        super().crearjson(listasensores,"sensores")
         
         return distancia

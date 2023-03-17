@@ -1,15 +1,33 @@
-
+#Librerias
 import json
 from Clases import claseLed,claseUltrasonico,claseTemperatura,claseSensores
 import time
+
+#------------------------------------
+#
+#
+#
+#Inicializadores
 led=claseLed.Led(21)
 sensorU = claseUltrasonico.SensorUltrasónico(trigger_pin=18, echo_pin=24)
 sensorT= claseTemperatura.SensorTemperaturaHumedad(5)
 
 sensores=claseSensores.sensores()
 
+#----------------------------------------
+
+
+
 
 class interface:
+  
+   #Recuperaciondedatos
+    def __init__(self):
+       try:
+        with open("sensores.json", "r") as f:
+            self.listasensores = json.load(f)
+       except:
+         self.listasensores
     
     
     def led(self):
@@ -37,7 +55,7 @@ class interface:
             self.lista = json.load(f)
             i = 0
             while True:  # Bucle infinito
-                distancia = sensorU.medir_distancia(self.lista)
+                distancia = sensorU.medir_distancia(self.lista,self.listasensores)
                 print(f"Distancia: {distancia} cm")
                 i += 1
                 if i == 8:
@@ -46,7 +64,7 @@ class interface:
                         break  # Detiene el bucle infinito
                     else:
                         i = 0
-     except FileNotFoundError:
+     except:
         self.lista = []
         print("No hay sensores registrados")
 
