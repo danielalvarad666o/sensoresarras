@@ -52,7 +52,7 @@ class interface:
           
     def leersesnorUltrasonico(self):
      try:
-        with open("claves.json", "r") as f:
+        with open("Claves.json", "r") as f:
             self.lista = json.load(f)
             i = 0
             while True:  # Bucle infinito
