@@ -1,6 +1,6 @@
 #Librerias
 import json
-from Clases import claseLed,claseUltrasonico,claseTemperatura,claseSensores
+from Clases import claseLed,claseUltrasonico,claseTemperatura,claseSensores,claseClaves
 import time
 
 #------------------------------------
@@ -8,6 +8,7 @@ import time
 #
 #
 #Inicializadores
+cla=claseClaves.Claves()
 led=claseLed.Led(21)
 sensorU = claseUltrasonico.SensorUltrasónico(trigger_pin=18, echo_pin=24)
 sensorT= claseTemperatura.SensorTemperaturaHumedad(5)
@@ -27,7 +28,7 @@ class interface:
         with open("sensores.json", "r") as f:
             self.listasensores = json.load(f)
        except:
-         self.listasensores
+            self.listasensores=[]
     
     
     def led(self):
@@ -89,10 +90,12 @@ class interface:
     
     
     def registrarsensor(self):
-      i=0
+      j=0
       cantidaddesensores=int(input("cuanto sensores tienes tambien cuenta led: "))
+      claves=cla.crearclaves(cantidaddesensores)
       for i in range(1, cantidaddesensores+1):
         print("Detectando Sensores ..........")
         time.sleep(5)
-        sensores.add_Sensores()
+        sensores.add_Sensores(claves[j])
+        j=j+1
         
