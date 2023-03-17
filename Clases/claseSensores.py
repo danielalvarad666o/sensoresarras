@@ -13,10 +13,10 @@ class sensores(lista.Lista):
           print("Hola usuario :D se detecto un sensor nuevo")
           
           
-          tipo=input(f"Por favor,proporcione el tipo CLAVE{CLAVE} : ")
+          tipo=input(f"Por favor,proporcione el tipo CLAVE= {CLAVE} : ")
           
-          ubicacion = input(f"Por favor, proporcione una ubicación para el sensor CLAVE{CLAVE} :  ")
-          descripcion = input(f"Por favor, proporcione una descripción para el sensor CLAVE{CLAVE} : ")
+          ubicacion = input(f"Por favor, proporcione una ubicación para el sensor CLAVE= {CLAVE} :  ")
+          descripcion = input(f"Por favor, proporcione una descripción para el sensor CLAVE= {CLAVE} : ")
                 
 
                 # Agregar el sensor a la lista
