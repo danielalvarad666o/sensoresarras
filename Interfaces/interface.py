@@ -37,7 +37,7 @@ class interface:
             self.lista = json.load(f)
             i = 0
             while True:  # Bucle infinito
-                distancia = sensorU.medir_distancia()
+                distancia = sensorU.medir_distancia(self.lista)
                 print(f"Distancia: {distancia} cm")
                 i += 1
                 if i == 8:
